@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} bruh
 on: [ push ]
 jobs:
   build:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - run: apt-get update
       - run: apt-get install -y
