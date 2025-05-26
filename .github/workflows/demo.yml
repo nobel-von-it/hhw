@@ -1,12 +1,18 @@
 name: Demo Build
 run-name: ${{ github.actor }} bruh
-on: [ push ]
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: apt-get update
-      - run: apt-get install -y
-      - run: apt-get install -y build-essential
-      - run: echo "ALL DEPS INSTALLED"
-      - run: make -B
+      - name: Update package list
+        run: sudo apt-get update
+
+      - name: Install build essential
+        run: sudo apt-get install -y build-essential
+
+      - name: Confirm installation
+        run: echo "ALL DEPS INSTALLED"
+
+      - name: Build project
+        run: make -B
