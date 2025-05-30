@@ -2,13 +2,13 @@ PREFIX = /usr/local
 
 
 CC = gcc
-LIBS = 
-INCLUDES = 
-LDFLAGS = 
+LIBS = -lcunit
+INCLUDES = -I/usr/include
+LDFLAGS = -L/usr/include/CUnit
 
 CFLAGS = -W -Wall -Wextra -O2 -g
 
-SRCS = main.c
+SRCS = main.c core.c test.c
 OBJS = $(SRCS:.c=.o)
 
 TARGET = hhw
@@ -25,6 +25,9 @@ install: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin
 	cp -f ${TARGET} ${DESTDIR}${PREFIX}/bin
 	chmod 755 ${DESTDIR}${PREFIX}/bin/${TARGET}
+
+test: all
+	$(CC) $(CFLAGS) $(LDFLAGS) -o test test.c
 
 clean:
 	rm -f $(OBJS) $(TARGET)

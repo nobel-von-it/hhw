@@ -18,3 +18,19 @@ jobs:
 
       - name: Build project
         run: make -B
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Update package list
+        run: sudo apt-get update
+
+      - name: Install build essential
+        run: sudo apt-get install -y build-essential
+
+      - name: Confirm installation
+        run: echo "ALL DEPS INSTALLED"
+
+      - name: Testing with CUnit
